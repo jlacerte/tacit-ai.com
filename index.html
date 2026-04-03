@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TacitAI — Agents AI pour PME terrain</title>
+    <meta name="description" content="Agents AI qui automatisent les operations des PME de services terrain. Gicleurs, HVAC, plomberie. Developpe a Quebec par un gars de terrain.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="logo">TACIT<span>AI</span></a>
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            <span class="status-text">Systemes en operation</span>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="hero-grid">
+        <div class="hero-content">
+            <div class="hero-label">Quebec, Canada — Depuis 2024</div>
+            <h1>On automatise les <em>vraies</em> businesses.</h1>
+            <p class="hero-desc">Pas les startups tech. Les entreprises de gicleurs. De HVAC. De plomberie. Celles qui inspectent des batiments, qui envoient des techniciens sur la route, qui se battent avec leur ERP chaque jour.</p>
+            <p class="hero-desc">TacitAI build des agents AI qui font le travail de bureau pendant que vous faites le travail terrain.</p>
+            <a href="#contact" class="btn-main">Parler a Justin &rarr;</a>
+        </div>
+        <div class="hero-terminal">
+            <div class="terminal-bar">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+                <span class="terminal-title">master-control-commander</span>
+            </div>
+            <div class="terminal-body">
+                <p><span class="t-time">[08:01]</span> <span class="t-ok">HEARTBEAT_OK</span> — 3 emails, 2 RDV, 0 urgent</p>
+                <p><span class="t-time">[08:32]</span> <span class="t-worker">philippe</span> — Appel entrant: Deslauriers</p>
+                <p><span class="t-time">[08:32]</span> <span class="t-worker">philippe</span> — "Statut bon travail BT-2847?"</p>
+                <p><span class="t-time">[08:33]</span> <span class="t-mcp">servicentre</span> — BT-2847: Complete, facture en attente</p>
+                <p><span class="t-time">[08:33]</span> <span class="t-worker">philippe</span> — Client informe. Duree: 47s</p>
+                <p><span class="t-time">[09:00]</span> <span class="t-worker">facturation</span> — 3 bons completes &rarr; factures generees</p>
+                <p><span class="t-time">[09:01]</span> <span class="t-ok">ENVOI</span> — Facture #1847 &rarr; client@email.com</p>
+                <p><span class="t-time">[09:15]</span> <span class="t-alert">SEAO</span> — Nouvel appel d'offres: gicleurs Hopital Laval</p>
+                <p class="t-cursor"><span class="t-time">[09:30]</span> <span class="t-ok">HEARTBEAT_OK</span> — Tout roule.<span class="cursor">_</span></p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="stats-bar">
+    <div class="stats-inner">
+        <div class="stat">
+            <span class="stat-val">6+</span>
+            <span class="stat-label">mois en production</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+            <span class="stat-val">15</span>
+            <span class="stat-label">serveurs MCP actifs</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+            <span class="stat-val">24/7</span>
+            <span class="stat-label">agents autonomes</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+            <span class="stat-val">15+</span>
+            <span class="stat-label">ans de terrain</span>
+        </div>
+    </div>
+</section>
+
+<section class="section-what" id="quoi">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">01 / Le probleme</span>
+            <h2>Votre bureau est le maillon faible.</h2>
+        </div>
+        <div class="problem-grid">
+            <div class="problem-item">
+                <div class="problem-num">247</div>
+                <p class="problem-unit">appels/mois</p>
+                <p class="problem-desc">que votre receptionniste essaie de gerer entre les factures, les soumissions et le cafe froid.</p>
+            </div>
+            <div class="problem-item">
+                <div class="problem-num">12</div>
+                <p class="problem-unit">jours en moyenne</p>
+                <p class="problem-desc">entre un travail complete et la facture envoyee. 12 jours ou votre argent dort.</p>
+            </div>
+            <div class="problem-item">
+                <div class="problem-num">63%</div>
+                <p class="problem-unit">des appels d'offres</p>
+                <p class="problem-desc">passes sous le radar parce que personne a le temps de scraper SEAO chaque matin.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-how" id="comment">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">02 / La solution</span>
+            <h2>Des agents AI qui connaissent votre metier.</h2>
+        </div>
+        <div class="agent-list">
+            <div class="agent-card">
+                <div class="agent-header">
+                    <span class="agent-name">PHILIPPE</span>
+                    <span class="agent-status running">en operation</span>
+                </div>
+                <h3>Agent telephonique</h3>
+                <p>Repond a vos appels. Donne le statut des bons de travail en temps reel depuis votre ERP. Prend les rendez-vous d'inspection. Capture les messages urgents.</p>
+                <div class="agent-meta">
+                    <span>Connecte a Servicentre</span>
+                    <span>200-400$/mois</span>
+                </div>
+            </div>
+            <div class="agent-card">
+                <div class="agent-header">
+                    <span class="agent-name">FACTURATION</span>
+                    <span class="agent-status running">en operation</span>
+                </div>
+                <h3>Facturation automatique</h3>
+                <p>Bon de travail complete? Facture generee, envoyee, suivie. Relances automatiques a 31, 45, 60, 90 jours. Votre cashflow respire.</p>
+                <div class="agent-meta">
+                    <span>Connecte a Zoho Books</span>
+                    <span>100-200$/mois</span>
+                </div>
+            </div>
+            <div class="agent-card">
+                <div class="agent-header">
+                    <span class="agent-name">BATMAN</span>
+                    <span class="agent-status running">en operation</span>
+                </div>
+                <h3>Veille contrats publics</h3>
+                <p>Scrape SEAO et RBQ chaque jour. Detecte les appels d'offres pertinents pour votre sous-categorie. Vous arrivez premier.</p>
+                <div class="agent-meta">
+                    <span>Donnees ouvertes Quebec</span>
+                    <span>100-200$/mois</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-erp">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">03 / Integration</span>
+            <h2>On se branche sur votre ERP. Pas besoin de changer.</h2>
+        </div>
+        <div class="erp-list">
+            <div class="erp-item active">
+                <span class="erp-name">Servicentre</span>
+                <span class="erp-badge">connecteur actif</span>
+            </div>
+            <div class="erp-item active">
+                <span class="erp-name">Zoho One</span>
+                <span class="erp-badge">connecteur actif</span>
+            </div>
+            <div class="erp-item">
+                <span class="erp-name">Jonas Construction</span>
+                <span class="erp-badge soon">a venir</span>
+            </div>
+            <div class="erp-item">
+                <span class="erp-name">FieldEdge</span>
+                <span class="erp-badge soon">a venir</span>
+            </div>
+        </div>
+        <p class="erp-note">Votre ERP n'est pas dans la liste? On peut le connecter. C'est ce qu'on fait.</p>
+    </div>
+</section>
+
+<section class="section-proof">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">04 / Credibilite</span>
+            <h2>Pas du vaporware. Du code en production.</h2>
+        </div>
+        <div class="proof-content">
+            <div class="proof-text">
+                <p>TacitAI est ne dans une entreprise de gicleurs incendie. Pas dans un accelerateur. Pas dans un garage de la Silicon Valley.</p>
+                <p>Justin Lacerte inspecte des systemes d'incendie depuis 15 ans. Il s'est tanne de voir son bureau crouler sous les appels et la paperasse. Alors il a automatise le sien.</p>
+                <p>Aujourd'hui, 5 agents AI tournent 24/7 sur 3 serveurs. 15 connecteurs MCP. 30+ automations. Le tout orchestre par <strong>Master Control Commander</strong> — une architecture open source que n'importe qui peut inspecter.</p>
+            </div>
+            <div class="proof-links">
+                <a href="https://github.com/jlacerte/master-control-commander" target="_blank" class="proof-link">
+                    <span class="proof-link-label">Architecture open source</span>
+                    <span class="proof-link-name">master-control-commander &rarr;</span>
+                </a>
+                <a href="https://github.com/jlacerte/servicentre-mcp" target="_blank" class="proof-link">
+                    <span class="proof-link-label">Connecteur ERP</span>
+                    <span class="proof-link-name">servicentre-mcp &rarr;</span>
+                </a>
+                <a href="https://github.com/jlacerte/livre-gicleurs" target="_blank" class="proof-link">
+                    <span class="proof-link-label">Guide technique</span>
+                    <span class="proof-link-name">livre-gicleurs &rarr;</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-cta" id="contact">
+    <div class="container">
+        <div class="cta-box">
+            <h2>30 minutes. Votre ERP. En direct.</h2>
+            <p>Pas de slide deck. Pas de promesses. On vous montre vos propres donnees traitees par nos agents. Si ca marche pour vous, on en parle. Sinon, on se serre la main.</p>
+            <div class="cta-contact">
+                <a href="mailto:justin@tacit-ai.com" class="btn-main">justin@tacit-ai.com</a>
+                <span class="cta-phone">819-598-7722</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-grid">
+        <div>
+            <span class="footer-logo">TACIT<span>AI</span></span>
+            <p>Quebec, Canada</p>
+        </div>
+        <div>
+            <p class="footer-label">Liens</p>
+            <a href="https://github.com/jlacerte/master-control-commander">GitHub</a>
+        </div>
+        <div>
+            <p class="footer-label">Contact</p>
+            <a href="mailto:justin@tacit-ai.com">justin@tacit-ai.com</a>
+            <p>819-598-7722</p>
+        </div>
+    </div>
+    <div class="container">
+        <p class="footer-copy">2026 TacitAI inc. — Developpe a Quebec par un gars de terrain.</p>
+    </div>
+</footer>
+
+</body>
+</html>
