@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TacitAI — Justin Lacerte</title>
+<meta name="description" content="Je fais le travail que les PME n'ont pas le temps de faire, avec l'IA. Vérification de sites web, facturation, veille des appels d'offres.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fond: #12161D;
+    --texte: #D9D4C7;
+    --ambre: #F0A93B;     /* phosphore ambre des vieux terminaux */
+    --pale: #7E8695;
+    --ok: #9CCB6B;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--fond);
+    color: var(--texte);
+    font: 400 15px/1.7 var(--mono);
+    padding: 0 16px;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 56px 0 64px; }
+  a { color: var(--ambre); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--ambre); outline-offset: 3px; }
+
+  .bloc { margin-bottom: 36px; }
+  .invite { color: var(--pale); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .invite b { color: var(--ambre); font-weight: 400; }
+  .invite .cmd { color: var(--texte); }
+  .sortie { margin-top: 8px; padding-left: 2ch; }
+  .sortie p { max-width: 64ch; }
+  .sortie p + p { margin-top: 10px; }
+
+  .grand { font-size: 26px; line-height: 1.3; font-weight: 700; color: var(--texte); max-width: 26ch; }
+  .pale { color: var(--pale); }
+
+  .ls { display: grid; grid-template-columns: max-content 1fr; gap: 4px 3ch; }
+  .ls dt { color: var(--ambre); }
+  .ls dd { color: var(--pale); }
+
+  .log { list-style: none; }
+  .log li { display: grid; grid-template-columns: 9ch 7ch 1fr; gap: 0 1ch; }
+  .log .d { color: var(--pale); }
+  .log .ok { color: var(--ok); }
+  .log .cours { color: var(--ambre); }
+
+  .curseur {
+    display: inline-block; width: 0.6em; height: 1.1em; background: var(--ambre);
+    vertical-align: text-bottom; margin-left: 2px;
+    animation: clign 1.1s steps(1) infinite;
+  }
+  @keyframes clign { 50% { opacity: 0; } }
+
+  /* Un seul moment animé : la première commande se tape au chargement */
+  .tape { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: bottom;
+          width: 0; animation: taper .7s steps(6) .3s forwards; }
+  @keyframes taper { to { width: 6ch; } }
+  .apparait { opacity: 0; animation: voir .01s 1.1s forwards; }
+  @keyframes voir { to { opacity: 1; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tape { width: 6ch; animation: none; }
+    .apparait { opacity: 1; animation: none; }
+    .curseur { animation: none; }
+  }
+  @media (max-width: 560px) {
+    body { font-size: 14px; }
+    .grand { font-size: 21px; }
+    .ls { grid-template-columns: 1fr; }
+    .ls dd { margin-bottom: 8px; }
+    .log li { grid-template-columns: 8ch 1fr; }
+    .log li > :last-child { grid-column: 1 / -1; padding-bottom: 6px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <section class="bloc" aria-label="Qui suis-je">
+    <p class="invite"><b>justin@tacitai</b>:~$ <span class="cmd tape">whoami</span></p>
+    <div class="sortie apparait">
+      <p class="grand">Je fais le travail que les PME n'ont pas le temps de faire. Avec l'IA.</p>
+      <p class="pale">Justin Lacerte, Québec. Quinze ans dans les gicleurs incendie. J'ai automatisé mon propre bureau avant d'offrir la même chose aux autres.</p>
+    </div>
+  </section>
+
+  <section class="bloc" aria-label="Services">
+    <p class="invite"><b>justin@tacitai</b>:~$ <span class="cmd">ls services/</span></p>
+    <dl class="sortie ls">
+      <dt>verification-site-web</dt>
+      <dd>Votre site peut servir de déguisement à des escrocs. Je le vérifie de l'extérieur, sans rien toucher, et je vous remets un rapport clair.</dd>
+      <dt>facturation-auto</dt>
+      <dd>Bon de travail complété = facture envoyée, relances comprises. Zoho Books.</dd>
+      <dt>veille-appels-offres</dt>
+      <dd>SEAO et RBQ surveillés chaque jour. Je vous signale ce qui vous concerne.</dd>
+      <dt>rapports-inspection</dt>
+      <dd>Des notes de terrain aux rapports propres, vérifiés, prêts à envoyer.</dd>
+    </dl>
+  </section>
+
+  <section class="bloc" aria-label="Journal des livraisons">
+    <p class="invite"><b>justin@tacitai</b>:~$ <span class="cmd">tail journal.log</span></p>
+    <ol class="sortie log">
+      <li><span class="d">2026-11</span><span class="cours">[cours]</span><span>Vérification de sécurité de tacit-ai.com — mon site passe en premier.</span></li>
+      <li><span class="d">2026-10</span><span class="ok">[ ok ]</span><span>9 sites web du réseau vérifiés : hébergeur, responsable, technologies.</span></li>
+      <li><span class="d">2026-10</span><span class="ok">[ ok ]</span><span>Outil maison : 7 647 technologies reconnues, détection de PHP2Shell.</span></li>
+      <li><span class="d">2026-09</span><span class="ok">[ ok ]</span><span>258 rapports d'inspection livrés, chacun avec son certificat.</span></li>
+      <li><span class="d">2026</span><span class="ok">[ ok ]</span><span>Code ouvert : <a href="https://github.com/jlacerte/master-control-commander">master-control-commander</a>, <a href="https://github.com/jlacerte/servicentre-mcp">servicentre-mcp</a>.</span></li>
+    </ol>
+  </section>
+
+  <section class="bloc" aria-label="Contact">
+    <p class="invite"><b>justin@tacitai</b>:~$ <span class="cmd">contact</span></p>
+    <div class="sortie">
+      <p><a href="mailto:justin@tacit-ai.com">justin@tacit-ai.com</a></p>
+      <p class="pale"><a href="https://github.com/jlacerte">github</a> · <a href="https://www.linkedin.com/company/tacitai-qc">linkedin</a> · <a href="https://x.com/justin_tacitai">x</a> · <a href="https://www.youtube.com/@QuebecIA">youtube</a></p>
+    </div>
+  </section>
+
+  <p class="invite" aria-hidden="true"><b>justin@tacitai</b>:~$ <span class="curseur"></span></p>
+</main>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TacitAI — Justin Lacerte</title>
+<meta name="description" content="Je fais le travail que les PME n'ont pas le temps de faire, avec l'IA. Vérification de sites web, facturation, veille des appels d'offres.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --papier: #FFFFFF;
+    --encre: #1B2230;
+    --gris: #5B6474;
+    --trait: #E3E6EB;
+    --rouge: #B3261E;      /* rouge des têtes de gicleurs */
+    --lien: #1F4E8C;
+    --mono: "Martian Mono", ui-monospace, monospace;
+    --texte: "Instrument Sans", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --papier: #151A22;
+      --encre: #E8EAEE;
+      --gris: #9AA3B2;
+      --trait: #2A313D;
+      --rouge: #E5625A;
+      --lien: #8DB4F0;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--papier);
+    color: var(--encre);
+    font: 400 17px/1.6 var(--texte);
+    padding: 0 20px;
+  }
+  main { max-width: 660px; margin: 0 auto; padding: 72px 0 48px; }
+  a { color: var(--lien); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--rouge); outline-offset: 3px; border-radius: 2px; }
+
+  /* En-tête */
+  .tete { display: flex; gap: 20px; align-items: center; margin-bottom: 28px; }
+  .tete img { width: 56px; height: 56px; border-radius: 8px; flex: none; }
+  .nom { font: 600 22px/1.2 var(--mono); letter-spacing: -0.02em; }
+  .nom span { display: block; font-weight: 400; font-size: 13px; color: var(--gris); margin-top: 4px; letter-spacing: 0; }
+
+  .phrase { font-size: 24px; line-height: 1.35; font-weight: 500; max-width: 30ch; margin-bottom: 16px; }
+  .sous { color: var(--gris); max-width: 58ch; }
+  .sous + .sous { margin-top: 12px; }
+
+  .liens { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 24px; font: 400 13px/1.6 var(--mono); }
+
+  h2 {
+    font: 600 14px/1.4 var(--mono);
+    margin: 64px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--trait);
+  }
+
+  /* Services */
+  .services { list-style: none; display: grid; gap: 22px; }
+  .services h3 { font-size: 17px; font-weight: 600; }
+  .services p { color: var(--gris); }
+
+  /* Journal daté : c'est la pièce maîtresse */
+  .journal { list-style: none; }
+  .journal li {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--trait);
+  }
+  .journal time { font: 400 13px/1.9 var(--mono); color: var(--rouge); }
+  .journal p { color: var(--gris); font-size: 15px; }
+  .journal strong { color: var(--encre); font-weight: 600; display: block; font-size: 17px; }
+  .etat { font: 400 12px var(--mono); color: var(--rouge); }
+
+  .contact p { margin-bottom: 8px; }
+  .contact a { font: 400 15px var(--mono); }
+
+  footer { max-width: 660px; margin: 0 auto; padding: 32px 0 48px; color: var(--gris); font: 400 12px var(--mono); }
+
+  @media (max-width: 560px) {
+    main { padding-top: 40px; }
+    .phrase { font-size: 21px; }
+    .journal li { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="tete">
+      <img src="../logo-tacitai.png" alt="">
+      <div class="nom">TacitAI<span>Justin Lacerte · Québec, Canada</span></div>
+    </div>
+    <p class="phrase">Je fais le travail que les PME n'ont pas le temps de faire. Avec l'IA.</p>
+    <p class="sous">Quinze ans dans les gicleurs incendie. J'ai automatisé mon propre bureau avant d'offrir la même chose aux autres. Vous me confiez une tâche, je la livre — vite, à bon prix, avec des outils d'intelligence artificielle que je maîtrise.</p>
+    <nav class="liens" aria-label="Ailleurs sur le web">
+      <a href="https://github.com/jlacerte">GitHub</a>
+      <a href="https://www.linkedin.com/company/tacitai-qc">LinkedIn</a>
+      <a href="https://x.com/justin_tacitai">X</a>
+      <a href="https://www.youtube.com/@QuebecIA">YouTube</a>
+      <a href="mailto:justin@tacit-ai.com">Courriel</a>
+    </nav>
+  </header>
+
+  <section aria-labelledby="t-services">
+    <h2 id="t-services">Ce que je fais pour vous</h2>
+    <ul class="services">
+      <li>
+        <h3>Vérification de votre site web</h3>
+        <p>Un site mal entretenu peut être piraté et servir à des escrocs pour paraître crédibles auprès de vos clients. Je vérifie le vôtre de l'extérieur, sans rien toucher, et je vous remets un rapport clair : ce qui va, ce qui est à corriger.</p>
+      </li>
+      <li>
+        <h3>Facturation automatique</h3>
+        <p>Le bon de travail est complété, la facture part toute seule, les relances aussi. Branché sur Zoho Books.</p>
+      </li>
+      <li>
+        <h3>Veille des appels d'offres</h3>
+        <p>Chaque jour, je surveille SEAO et la RBQ et je vous signale les contrats qui vous concernent.</p>
+      </li>
+      <li>
+        <h3>Rapports d'inspection</h3>
+        <p>Des notes de terrain et des formulaires papier, je tire des rapports propres, vérifiés, prêts à envoyer.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="t-journal">
+    <h2 id="t-journal">Journal — ce qui a été livré</h2>
+    <ol class="journal" reversed>
+      <li>
+        <time datetime="2026-11">2026-11</time>
+        <p><strong>Vérification de sécurité de tacit-ai.com</strong>Mon propre site passe en premier, comme pour un client. <span class="etat">en cours</span></p>
+      </li>
+      <li>
+        <time datetime="2026-10">2026-10</time>
+        <p><strong>Vérification de 9 sites web du réseau</strong>Hébergeur, registraire, responsable de l'entretien et technologies exposées, pour chaque site.</p>
+      </li>
+      <li>
+        <time datetime="2026-10">2026-10</time>
+        <p><strong>Outil maison de détection de failles</strong>Reconnaît 7 647 technologies web et signale les sites touchés par la faille PHP2Shell.</p>
+      </li>
+      <li>
+        <time datetime="2026-09">2026-09</time>
+        <p><strong>258 rapports d'inspection livrés</strong>Chacun accompagné de son certificat.</p>
+      </li>
+      <li>
+        <time datetime="2026">2026</time>
+        <p><strong>Code ouvert sur GitHub</strong><a href="https://github.com/jlacerte/master-control-commander">Master Control Commander</a> et <a href="https://github.com/jlacerte/servicentre-mcp">Servicentre MCP</a>.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="contact" aria-labelledby="t-contact">
+    <h2 id="t-contact">Me joindre</h2>
+    <p>Une tâche qui traîne ? Écrivez-moi, je vous réponds en personne.</p>
+    <a href="mailto:justin@tacit-ai.com">justin@tacit-ai.com</a>
+  </section>
+</main>
+<footer>TacitAI · 2026</footer>
+</body>
+</html>
