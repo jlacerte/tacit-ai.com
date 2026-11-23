@@ -48,7 +48,7 @@
 
   h2 { font: 600 14px/1.4 var(--mono); margin: 64px 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--trait); }
 
-  /* Le visuel : une case par domaine vérifié */
+  /* Le visuel : une case par site vérifié */
   .grille { display: grid; grid-template-columns: repeat(17, 1fr); gap: 6px; margin: 8px 0 18px; }
   .grille i { aspect-ratio: 1; border-radius: 3px; display: block; }
   .crit { background: var(--r-crit); }
@@ -112,13 +112,12 @@
 <main>
   <div class="tete-mini"><img src="../logo-tacitai.png" alt=""><div><b>TacitAI</b><span>Justin Lacerte · Québec, Canada</span></div></div>
   <section class="hero" aria-label="Portrait de novembre 2026">
-    <p class="chiffre"><b>34</b> domaines vérifiés en novembre 2026</p>
-    <div class="grille" role="img" aria-label="34 domaines vérifiés : 18 sans problème, 1 critique, 3 élevés, 8 modérés, 3 faibles, 1 sans site web">
+    <p class="chiffre"><b>34</b> sites vérifiés en novembre 2026</p>
+    <div class="grille" role="img" aria-label="34 sites vérifiés : 18 sans problème, 1 critique, 3 élevés, 8 modérés, 4 faibles">
       <i class="crit"></i>
       <i class="haut"></i><i class="haut"></i><i class="haut"></i>
       <i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i>
-      <i class="bas"></i><i class="bas"></i><i class="bas"></i>
-      <i class="inc"></i>
+      <i class="bas"></i><i class="bas"></i><i class="bas"></i><i class="bas"></i>
       <i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
       <i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
       <i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
@@ -128,10 +127,9 @@
       <li><i class="crit"></i><b>1</b>risque critique</li>
       <li><i class="haut"></i><b>3</b>risque élevé</li>
       <li><i class="mod"></i><b>8</b>risque modéré</li>
-      <li><i class="bas"></i><b>3</b>risque faible</li>
-      <li><i class="inc"></i><b>1</b>domaine sans site web</li>
+      <li><i class="bas"></i><b>4</b>risque faible</li>
     </ul>
-    <p class="note">Une case par domaine : clients, fournisseurs et partenaires. Aucun n'est nommé ici.</p>
+    <p class="note">Une case par site : clients, fournisseurs et partenaires. Aucun site n'est nommé ici.</p>
   </section>
   <aside class="offre" aria-labelledby="t-offre">
       <p id="t-offre"><strong>Vous voulez connaître l'état de votre site web ?</strong> Envoyez-moi son adresse par courriel. Je vous fais un premier constat, gratuitement.</p>
@@ -157,8 +155,8 @@
   <section aria-labelledby="t-journal">
     <h2 id="t-journal">Journal</h2>
     <ol class="journal" reversed>
-      <li><time datetime="2026-11-23">2026-11-23</time><p><strong>Deux domaines « opaques » revus de plus près</strong>Aucun n'était mieux protégé. L'un montre maintenant son site : risque modéré. L'autre n'a pas de site web, seulement la page par défaut de l'hébergeur. 15 domaines restent sous surveillance.</p></li>
-      <li><time datetime="2026-11-21">2026-11-21</time><p><strong>34 domaines vérifiés</strong>Chacun a sa fiche et son niveau de risque. 16 restent sous surveillance.</p></li>
+      <li><time datetime="2026-11-23">2026-11-23</time><p><strong>Deux sites « opaques » revus de plus près</strong>Aucun n'était mieux protégé. L'un montre maintenant son contenu : risque modéré. Pour l'autre, l'adresse au dossier n'affichait que la page par défaut de l'hébergeur ; le vrai site est ailleurs : risque faible.</p></li>
+      <li><time datetime="2026-11-21">2026-11-21</time><p><strong>34 sites vérifiés</strong>Chacun a sa fiche et son niveau de risque. 16 restent sous surveillance.</p></li>
       <li class="averti"><time datetime="2026-11-21">2026-11-21</time><p><strong>Revérification du même domaine</strong>Sans déranger le propriétaire : le domaine est prolongé jusqu'en octobre 2027. Confirmation finale après le 12 décembre. <span class="etat">à revérifier</span></p></li>
       <li class="averti"><time datetime="2026-10-27">2026-10-27</time><p><strong>Un propriétaire averti : son nom de domaine expirait le lendemain</strong>Un appel pour le prévenir. Le domaine a été renouvelé le 29 octobre. <span class="etat">réglé</span></p></li>
       <li><time datetime="2026-10-27">2026-10-27</time><p><strong>Qui est responsable de quoi</strong>Hébergeur, registraire et responsable de l'entretien, pour chaque site.</p></li>
