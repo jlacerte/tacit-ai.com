@@ -79,6 +79,10 @@
   .journal p { color: var(--gris); font-size: 15px; }
   .journal strong { color: var(--encre); font-weight: 600; display: block; font-size: 17px; }
   .etat { font: 400 12px var(--mono); color: var(--rouge); }
+  .journal details { margin-top: 6px; font-size: 15px; }
+  .journal summary { cursor: pointer; color: var(--lien); font-size: 14px; width: fit-content; }
+  .journal summary:focus-visible { outline: 2px solid var(--rouge); outline-offset: 3px; border-radius: 2px; }
+  .journal details p { margin-top: 6px; padding-left: 12px; border-left: 2px solid var(--trait); }
 
   .contact p { margin-bottom: 8px; }
   .contact a { font: 400 15px var(--mono); }
@@ -155,10 +159,17 @@
   <section aria-labelledby="t-journal">
     <h2 id="t-journal">Journal</h2>
     <ol class="journal" reversed>
-      <li><time datetime="2026-11-23">2026-11-23</time><p><strong>Deux sites « opaques » revus de plus près</strong>Ce n'est pas une protection qui les rendait opaques. L'un montre maintenant son contenu : risque modéré. Pour l'autre, l'adresse au dossier n'affichait que la page par défaut de l'hébergeur ; le vrai site est ailleurs : risque faible.</p></li>
+      <li><time datetime="2026-11-23">2026-11-23</time><div><p><strong>Un certificat qui ne porte pas le bon nom</strong>Le domaine d'un fournisseur affiche « Votre connexion n'est pas privée ». <span class="etat">propriétaire à prévenir</span></p>
+        <details><summary>Ce que ça veut dire</summary><p>Le cadenas du navigateur repose sur un certificat au nom exact du site. Ici, le serveur présente le certificat de l'hébergeur, à un autre nom : le navigateur bloque la page. Les données ne sont pas en danger, mais un client qui prend l'habitude de cliquer « continuer quand même » devient plus facile à piéger. Le correctif est simple : l'hébergeur émet un certificat gratuit au bon nom, ou l'adresse renvoie vers le vrai site.</p></details></div></li>
+      <li><time datetime="2026-11-23">2026-11-23</time><div><p><strong>La bonne adresse n'était pas celle du courriel</strong>Le domaine au dossier n'affichait que la page par défaut de l'hébergeur. Le vrai site, sur une plateforme en ligne, était ailleurs : risque faible.</p>
+        <details><summary>Ce que ça veut dire</summary><p>Une petite entreprise a souvent plusieurs adresses : une pour le courriel, une pour le site, parfois une vieille qui traîne. Avant d'évaluer, il faut trouver la bonne. Et chaque adresse qu'on garde doit être entretenue, même celle qui ne sert plus qu'au courriel.</p></details></div></li>
+      <li><time datetime="2026-11-23">2026-11-23</time><div><p><strong>Un site qui bloquait mes vérifications ne bloque plus</strong>En octobre, il refusait l'accès. Aujourd'hui, il se laisse voir : un WordPress chargé d'extensions, mais entretenu. Risque modéré.</p>
+        <details><summary>Ce que ça veut dire</summary><p>Un refus d'accès n'est pas une preuve de protection : il peut venir d'un réglage temporaire de l'hébergeur. J'ignore encore ce qui l'a causé. Ce qui compte vraiment, c'est ce qui tourne derrière : les versions, les extensions, et quelqu'un qui fait les mises à jour.</p></details></div></li>
       <li><time datetime="2026-11-21">2026-11-21</time><p><strong>34 sites vérifiés</strong>Chacun a sa fiche et son niveau de risque. 16 restent sous surveillance.</p></li>
-      <li class="averti"><time datetime="2026-11-21">2026-11-21</time><p><strong>Revérification du même domaine</strong>Sans déranger le propriétaire : le domaine est prolongé jusqu'en octobre 2027. Confirmation finale après le 12 décembre. <span class="etat">à revérifier</span></p></li>
-      <li class="averti"><time datetime="2026-10-27">2026-10-27</time><p><strong>Un propriétaire averti : son nom de domaine expirait le lendemain</strong>Un appel pour le prévenir. Le domaine a été renouvelé le 29 octobre. <span class="etat">réglé</span></p></li>
+      <li class="averti"><time datetime="2026-11-21">2026-11-21</time><div><p><strong>Revérification du même domaine</strong>Sans déranger le propriétaire : le domaine est prolongé jusqu'en octobre 2027. Confirmation finale après le 12 décembre. <span class="etat">à revérifier</span></p>
+        <details><summary>Ce que ça veut dire</summary><p>Le registre public des noms de domaine (le « whois ») donne la date d'échéance à tout le monde. On peut donc suivre un renouvellement de l'extérieur, sans téléphoner. Pendant quelques semaines, le registre peut encore annuler un renouvellement impayé : d'où la confirmation après le 12 décembre.</p></details></div></li>
+      <li class="averti"><time datetime="2026-10-27">2026-10-27</time><div><p><strong>Un propriétaire averti : son nom de domaine expirait le lendemain</strong>Un appel pour le prévenir. Le domaine a été renouvelé le 29 octobre. <span class="etat">réglé</span></p>
+        <details><summary>Ce que ça veut dire</summary><p>Quand un nom de domaine expire, le site et le courriel tombent. Pire : une fois le nom libéré, n'importe qui peut le racheter et recevoir les courriels destinés à l'entreprise. Un renouvellement automatique et une carte de crédit à jour évitent tout ça.</p></details></div></li>
       <li><time datetime="2026-10-27">2026-10-27</time><p><strong>Qui est responsable de quoi</strong>Hébergeur, registraire et responsable de l'entretien, pour chaque site.</p></li>
       <li><time datetime="2026-10-25">2026-10-25</time><p><strong>Cardea Sentinelle</strong>Prototype ouvert d'une protection anti-rançongiciel pour Nextcloud. <a href="https://github.com/jlacerte/cardea-sentinelle">Voir le code</a> <span class="etat">prototype</span></p></li>
       <li><time datetime="2026-10-24">2026-10-24</time><p><strong>Un outil maison</strong>Il reconnaît 7 647 technologies web et repère les sites touchés par la faille PHP2Shell.</p></li>
