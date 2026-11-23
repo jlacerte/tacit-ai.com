@@ -1,231 +1,179 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!doctype html>
+<html lang="fr-CA">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TacitAI — AI pour PME terrain</title>
-    <meta name="description" content="Agents AI pour automatiser les PME de services terrain. Gicleurs, HVAC, plomberie. Quebec, Canada.">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-        a { color: #e2711d; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TacitAI — Justin Lacerte</title>
+<meta name="description" content="Je vérifie les sites web des PME de l'extérieur, sans rien toucher. Journal de l'enquête.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --papier: #FFFFFF;
+    --encre: #1B2230;
+    --gris: #5B6474;
+    --trait: #E3E6EB;
+    --rouge: #B3261E;
+    --lien: #1F4E8C;
+    /* niveaux de risque */
+    --r-crit: #B3261E;
+    --r-haut: #E0662B;
+    --r-mod: #E9B949;
+    --r-bas: #9FB7D6;
+    --r-inc: #FFFFFF;
+    --r-ok: #2F7D5B;
+    --mono: "Martian Mono", ui-monospace, monospace;
+    --texte: "Instrument Sans", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --papier: #151A22; --encre: #E8EAEE; --gris: #9AA3B2; --trait: #2A313D;
+      --rouge: #E5625A; --lien: #8DB4F0; --r-inc: #151A22;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--papier); color: var(--encre); font: 400 17px/1.6 var(--texte); padding: 0 20px; }
+  main { max-width: 660px; margin: 0 auto; padding: 72px 0 48px; }
+  a { color: var(--lien); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--rouge); outline-offset: 3px; border-radius: 2px; }
 
-        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+  .tete { display: flex; gap: 20px; align-items: center; margin-bottom: 28px; }
+  .tete img { width: 56px; height: 56px; border-radius: 8px; flex: none; }
+  .nom { font: 600 22px/1.2 var(--mono); letter-spacing: -0.02em; }
+  .nom span { display: block; font-weight: 400; font-size: 13px; color: var(--gris); margin-top: 4px; letter-spacing: 0; }
+  .phrase { font-size: 25px; line-height: 1.35; font-weight: 500; max-width: 28ch; margin-bottom: 16px; }
+  .sous { color: var(--gris); max-width: 58ch; }
+  .sous + .sous { margin-top: 12px; }
 
-        /* Header */
-        header {
-            padding: 48px 0;
-            border-bottom: 1px solid #1a1a1a;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .logo img {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-        }
-        .logo h1 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #fff;
-        }
-        .tagline {
-            font-size: 18px;
-            color: #888;
-            max-width: 500px;
-        }
+  h2 { font: 600 14px/1.4 var(--mono); margin: 64px 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--trait); }
 
-        /* Projects */
-        .section {
-            padding: 48px 0;
-            border-bottom: 1px solid #1a1a1a;
-        }
-        .section-title {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #555;
-            margin-bottom: 32px;
-        }
-        .project {
-            margin-bottom: 32px;
-            padding: 24px;
-            background: #111;
-            border: 1px solid #1a1a1a;
-            border-radius: 8px;
-        }
-        .project:last-child { margin-bottom: 0; }
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        .project h3 {
-            font-size: 18px;
-            color: #fff;
-        }
-        .project-status {
-            font-size: 12px;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-weight: 500;
-        }
-        .status-prod {
-            background: #0d2818;
-            color: #4ade80;
-        }
-        .status-dev {
-            background: #1c1608;
-            color: #e2711d;
-        }
-        .status-oss {
-            background: #0c1629;
-            color: #60a5fa;
-        }
-        .project p {
-            color: #888;
-            margin-bottom: 12px;
-        }
-        .project-link {
-            font-size: 14px;
-        }
-        .project-tech {
-            font-size: 13px;
-            color: #555;
-        }
+  /* Le visuel : une case par site vérifié */
+  .grille { display: grid; grid-template-columns: repeat(17, 1fr); gap: 6px; margin: 8px 0 18px; }
+  .grille i { aspect-ratio: 1; border-radius: 3px; display: block; }
+  .crit { background: var(--r-crit); }
+  .haut { background: var(--r-haut); }
+  .mod  { background: var(--r-mod); }
+  .bas  { background: var(--r-bas); }
+  .inc  { background: var(--r-inc); box-shadow: inset 0 0 0 1.5px var(--gris); }
+  .ok   { background: var(--r-ok); }
+  .surv { background: var(--r-haut); }
+  .grille i { opacity: 0; animation: case .25s ease-out forwards; }
+  @keyframes case { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .grille i { opacity: 1; animation: none; } }
 
-        /* About */
-        .about p {
-            color: #888;
-            margin-bottom: 12px;
-        }
-        .about p:last-child { margin-bottom: 0; }
+  .legende { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 24px; font-size: 15px; color: var(--gris); }
+  .legende li { display: flex; align-items: center; gap: 10px; }
+  .legende i { width: 12px; height: 12px; border-radius: 2px; flex: none; }
+  .legende b { font: 600 14px var(--mono); color: var(--encre); min-width: 2ch; text-align: right; }
+  .note { font-size: 14px; color: var(--gris); margin-top: 14px; }
 
-        /* Contact */
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .contact-info span {
-            color: #888;
-        }
+  .limite { margin-top: 20px; padding: 14px 16px; border-left: 3px solid var(--rouge); color: var(--encre); font-size: 16px; }
 
-        /* Footer */
-        footer {
-            padding: 32px 0;
-            text-align: center;
-            color: #333;
-            font-size: 14px;
-        }
+  .journal { list-style: none; }
+  .journal li { display: grid; grid-template-columns: 112px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--trait); }
+  .journal time { font: 400 13px/1.9 var(--mono); color: var(--rouge); }
+  .journal p { color: var(--gris); font-size: 15px; }
+  .journal strong { color: var(--encre); font-weight: 600; display: block; font-size: 17px; }
+  .etat { font: 400 12px var(--mono); color: var(--rouge); }
+  .journal details { margin-top: 6px; font-size: 15px; }
+  .journal summary { cursor: pointer; color: var(--lien); font-size: 14px; width: fit-content; }
+  .journal summary:focus-visible { outline: 2px solid var(--rouge); outline-offset: 3px; border-radius: 2px; }
+  .journal details p { margin-top: 6px; padding-left: 12px; border-left: 2px solid var(--trait); }
 
-        /* Links row */
-        .links {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin-top: 8px;
-        }
-        .links a {
-            font-size: 14px;
-            color: #555;
-        }
-        .links a:hover { color: #e2711d; }
+  .contact p { margin-bottom: 8px; }
+  .contact a { font: 400 15px var(--mono); }
+  footer { max-width: 660px; margin: 0 auto; padding: 32px 0 48px; color: var(--gris); font: 400 12px var(--mono); }
 
-        @media (max-width: 600px) {
-            header { padding: 32px 0; }
-            .section { padding: 32px 0; }
-            .project-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-        }
-    </style>
+  @media (max-width: 560px) {
+    main { padding-top: 40px; }
+    .phrase { font-size: 21px; }
+    .grille { grid-template-columns: repeat(10, 1fr); gap: 5px; }
+    .legende { grid-template-columns: 1fr; }
+    .journal li { grid-template-columns: 1fr; gap: 2px; }
+  }
+  .hero { margin-bottom: 48px; }
+  .hero .grille { grid-template-columns: repeat(10, 1fr); gap: 8px; max-width: 420px; }
+  .hero .grille i { border-radius: 4px; }
+  .chiffre { font: 400 14px/1.4 var(--mono); color: var(--gris); margin-bottom: 14px; }
+  .chiffre b { display: block; font: 600 64px/1 var(--mono); color: var(--encre); letter-spacing: -0.04em; margin-bottom: 6px; }
+  .tete-mini { display: flex; align-items: center; gap: 16px; margin: 8px 0 56px; }
+  .tete-mini img { width: 52px; height: 52px; border-radius: 10px; flex: none; }
+  .tete-mini b { display: block; font: 600 26px/1.1 var(--mono); letter-spacing: -0.03em; }
+  .tete-mini span { display: block; font: 400 15px/1.4 var(--texte); color: var(--gris); margin-top: 4px; }
+  .averti strong::before { content: "● "; color: var(--r-ok); }
+  .offre { margin: 0 0 48px; padding: 20px 22px; border: 1.5px solid var(--encre); border-radius: 8px; max-width: 58ch; }
+  .offre p { margin-bottom: 14px; }
+  .offre strong { display: block; font-size: 19px; font-weight: 600; margin-bottom: 4px; }
+  .bouton { display: inline-block; font: 600 14px/1 var(--mono); background: var(--encre); color: var(--papier); padding: 13px 18px; border-radius: 6px; text-decoration: none; }
+  .bouton:hover { background: var(--rouge); }
+</style>
 </head>
 <body>
+<main>
+  <div class="tete-mini"><img src="logo-tacitai.png" alt=""><div><b>TacitAI</b><span>Justin Lacerte · Québec, Canada</span></div></div>
+  <section class="hero" aria-label="Portrait de novembre 2026">
+    <p class="chiffre"><b>36</b> sites vérifiés en novembre 2026</p>
+    <div class="grille" role="img" aria-label="36 sites vérifiés : 20 sans problème, 1 critique, 3 élevés, 8 modérés, 4 faibles">
+      <i class="crit"></i>
+      <i class="haut"></i><i class="haut"></i><i class="haut"></i>
+      <i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i>
+      <i class="bas"></i><i class="bas"></i><i class="bas"></i><i class="bas"></i>
+      <i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
+      <i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
+      <i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
+      <i class="ok"></i><i class="ok"></i>
+    </div>
+    <ul class="legende" aria-hidden="true">
+      <li><i class="ok"></i><b>20</b>rien à signaler</li>
+      <li><i class="crit"></i><b>1</b>risque critique</li>
+      <li><i class="haut"></i><b>3</b>risque élevé</li>
+      <li><i class="mod"></i><b>8</b>risque modéré</li>
+      <li><i class="bas"></i><b>4</b>risque faible</li>
+    </ul>
+    <p class="note">Une case par site vérifié. Aucun site n'est nommé ici.</p>
+  </section>
+  <aside class="offre" aria-labelledby="t-offre">
+      <p id="t-offre"><strong>Vous voulez connaître l'état de votre site web ?</strong> Envoyez-moi son adresse par courriel. Je vous fais un premier constat, gratuitement.</p>
+      <a class="bouton" href="mailto:justin@tacit-ai.com?subject=%C3%89tat%20de%20mon%20site%20web">Demander mon constat gratuit</a>
+  </aside>
+  <header>
+    <p class="phrase">Quand je vois un problème sur le site d'un partenaire, je l'avertis.</p>
+    <p class="sous">Logiciel périmé, certificat ou domaine qui expire : j'appelle le propriétaire. Un site négligé peut servir à des escrocs pour tromper tout le réseau. Je fais ce travail avec l'IA.</p>
+    <p class="limite">Je regarde seulement ce que les sites montrent publiquement. Aucun test plus poussé sans l'accord écrit du propriétaire.</p>
+  </header>
 
-<div class="container">
+  <section aria-labelledby="t-journal">
+    <h2 id="t-journal">Journal</h2>
+    <ol class="journal" reversed>
+      <li class="averti"><time datetime="2026-11-23">2026-11-23</time><div><p><strong>Des brouillons lisibles par tout le monde</strong>Sur un site, l'historique du code et des documents de travail étaient accessibles à qui connaissait l'adresse. Fermé le jour même, vérifié adresse par adresse. <span class="etat">réglé</span></p>
+        <details><summary>Ce que ça veut dire</summary><p>Un site a souvent plusieurs adresses : son domaine, l'adresse technique de l'hébergeur, les anciennes versions publiées. Bloquer une adresse ne protège pas les autres, et des copies restent quelques jours dans la mémoire de l'hébergeur. Ici, la cause était la façon de publier : tout le dossier de travail partait en ligne. La vraie correction, c'est de ne publier que les pages finales.</p></details></div></li>
+      <li><time datetime="2026-11-23">2026-11-23</time><div><p><strong>Un certificat qui ne porte pas le bon nom</strong>Le domaine d'un fournisseur affiche « Votre connexion n'est pas privée ». <span class="etat">propriétaire à prévenir</span></p>
+        <details><summary>Ce que ça veut dire</summary><p>Le cadenas du navigateur repose sur un certificat au nom exact du site. Ici, le serveur présente le certificat de l'hébergeur, à un autre nom : le navigateur bloque la page. Les données ne sont pas en danger, mais un client qui prend l'habitude de cliquer « continuer quand même » devient plus facile à piéger. Le correctif est simple : l'hébergeur émet un certificat gratuit au bon nom, ou l'adresse renvoie vers le vrai site.</p></details></div></li>
+      <li><time datetime="2026-11-23">2026-11-23</time><div><p><strong>La bonne adresse n'était pas celle du courriel</strong>Le domaine au dossier n'affichait que la page par défaut de l'hébergeur. Le vrai site, sur une plateforme en ligne, était ailleurs : risque faible.</p>
+        <details><summary>Ce que ça veut dire</summary><p>Une petite entreprise a souvent plusieurs adresses : une pour le courriel, une pour le site, parfois une vieille qui traîne. Avant d'évaluer, il faut trouver la bonne. Et chaque adresse qu'on garde doit être entretenue, même celle qui ne sert plus qu'au courriel.</p></details></div></li>
+      <li><time datetime="2026-11-23">2026-11-23</time><div><p><strong>Un site qui bloquait mes vérifications ne bloque plus</strong>En octobre, il refusait l'accès. Aujourd'hui, il se laisse voir : un WordPress chargé d'extensions, mais entretenu. Risque modéré.</p>
+        <details><summary>Ce que ça veut dire</summary><p>Un refus d'accès n'est pas une preuve de protection : il peut venir d'un réglage temporaire de l'hébergeur. J'ignore encore ce qui l'a causé. Ce qui compte vraiment, c'est ce qui tourne derrière : les versions, les extensions, et quelqu'un qui fait les mises à jour.</p></details></div></li>
+      <li><time datetime="2026-11-21">2026-11-21</time><p><strong>34 sites vérifiés</strong>Chacun a sa fiche et son niveau de risque. 16 restent sous surveillance.</p></li>
+      <li class="averti"><time datetime="2026-11-21">2026-11-21</time><div><p><strong>Revérification du même domaine</strong>Sans déranger le propriétaire : le domaine est prolongé jusqu'en octobre 2027. Confirmation finale après le 12 décembre. <span class="etat">à revérifier</span></p>
+        <details><summary>Ce que ça veut dire</summary><p>Le registre public des noms de domaine (le « whois ») donne la date d'échéance à tout le monde. On peut donc suivre un renouvellement de l'extérieur, sans téléphoner. Pendant quelques semaines, le registre peut encore annuler un renouvellement impayé : d'où la confirmation après le 12 décembre.</p></details></div></li>
+      <li class="averti"><time datetime="2026-10-27">2026-10-27</time><div><p><strong>Un propriétaire averti : son nom de domaine expirait le lendemain</strong>Un appel pour le prévenir. Le domaine a été renouvelé le 29 octobre. <span class="etat">réglé</span></p>
+        <details><summary>Ce que ça veut dire</summary><p>Quand un nom de domaine expire, le site et le courriel tombent. Pire : une fois le nom libéré, n'importe qui peut le racheter et recevoir les courriels destinés à l'entreprise. Un renouvellement automatique et une carte de crédit à jour évitent tout ça.</p></details></div></li>
+      <li><time datetime="2026-10-27">2026-10-27</time><p><strong>Qui est responsable de quoi</strong>Hébergeur, registraire et responsable de l'entretien, pour chaque site.</p></li>
+      <li><time datetime="2026-10-25">2026-10-25</time><p><strong>Cardea Sentinelle</strong>Prototype ouvert d'une protection anti-rançongiciel pour Nextcloud. <a href="https://github.com/jlacerte/cardea-sentinelle">Voir le code</a> <span class="etat">prototype</span></p></li>
+      <li><time datetime="2026-10-24">2026-10-24</time><p><strong>Un outil maison</strong>Il reconnaît 7 647 technologies web et repère les sites touchés par la faille PHP2Shell.</p></li>
+      <li><time datetime="2026-10-22">2026-10-22</time><p><strong>Début de l'enquête</strong></p></li>
+      <li><time datetime="2026-03-30">2026-03-30</time><p><strong>Master Control Commander</strong>Architecture ouverte pour faire travailler des agents IA dans une PME. <a href="https://github.com/jlacerte/master-control-commander">Voir le code</a></p></li>
+    </ol>
+  </section>
 
-    <header>
-        <div class="logo">
-            <img src="logo-tacitai.png" alt="TacitAI">
-            <h1>TacitAI</h1>
-        </div>
-        <p class="tagline">Solutions AI pour automatiser les PME terrain. Gicleurs, HVAC, plomberie. Quebec, Canada.</p>
-    </header>
-
-    <section class="section">
-        <div class="section-title">Projets</div>
-
-        <div class="project">
-            <div class="project-header">
-                <h3>Master Control Commander</h3>
-                <span class="project-status status-oss">open source</span>
-            </div>
-            <p>Architecture d'orchestration pour agents AI autonomes. 5 workers, 15 serveurs MCP, validation adversariale. En production depuis 6+ mois.</p>
-            <a class="project-link" href="https://github.com/jlacerte/master-control-commander" target="_blank">github.com/jlacerte/master-control-commander</a>
-        </div>
-
-        <div class="project">
-            <div class="project-header">
-                <h3>Philippe</h3>
-                <span class="project-status status-dev">en alpha</span>
-            </div>
-            <p>Agent telephonique AI pour PME. Repond aux appels, donne le statut des bons de travail en temps reel depuis l'ERP du client. Twilio + ConversationRelay.</p>
-            <span class="project-tech">Teste chez Mecanique Gicleurs (819-414-8807)</span>
-        </div>
-
-        <div class="project">
-            <div class="project-header">
-                <h3>Facturation automatique</h3>
-                <span class="project-status status-prod">en production</span>
-            </div>
-            <p>Bon de travail complete = facture generee, envoyee, suivie. Relances automatiques. Connecte a Zoho Books.</p>
-        </div>
-
-        <div class="project">
-            <div class="project-header">
-                <h3>Batman</h3>
-                <span class="project-status status-prod">en production</span>
-            </div>
-            <p>Veille automatisee des contrats publics. Scrape SEAO et RBQ chaque jour. Detecte les appels d'offres pertinents pour les entreprises de gicleurs.</p>
-        </div>
-
-    </section>
-
-    <section class="section about">
-        <div class="section-title">A propos</div>
-        <p>Justin Lacerte. 15 ans dans les gicleurs incendie. J'ai automatise mon propre bureau avant de proposer la meme chose aux autres PME terrain.</p>
-        <p>TacitAI developpe des agents AI qui comprennent la realite des entreprises de services: les bons de travail, les inspections, les appels de clients, la facturation. Pas du consulting. Du code en production.</p>
-        <div class="links">
-            <a href="https://github.com/jlacerte">GitHub</a>
-            <a href="https://www.linkedin.com/company/tacitai-qc">LinkedIn</a>
-            <a href="https://x.com/justin_tacitai">X / Twitter</a>
-            <a href="https://www.youtube.com/@QuebecIA">YouTube</a>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="section-title">Contact</div>
-        <div class="contact-info">
-            <a href="mailto:justin@tacit-ai.com">justin@tacit-ai.com</a>
-            <span>Quebec, Canada</span>
-        </div>
-    </section>
-
-    <footer>
-        <p>TacitAI 2026</p>
-    </footer>
-
-</div>
-
+  <section class="contact" aria-labelledby="t-contact">
+    <h2 id="t-contact">Me joindre</h2>
+    <p>Pour un premier constat gratuit de votre site, ou pour toute question : écrivez-moi.</p>
+    <a href="mailto:justin@tacit-ai.com?subject=%C3%89tat%20de%20mon%20site%20web">justin@tacit-ai.com</a>
+  </section>
+</main>
+<footer>TacitAI · 2026 · <a href="https://github.com/jlacerte">GitHub</a></footer>
+<script src="animation.js"></script>
 </body>
 </html>

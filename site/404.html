@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page introuvable — TacitAI</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --papier: #FFFFFF; --encre: #1B2230; --gris: #5B6474; --rouge: #B3261E;
+    --mono: "Martian Mono", ui-monospace, monospace;
+    --texte: "Instrument Sans", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --papier: #151A22; --encre: #E8EAEE; --gris: #9AA3B2; --rouge: #E5625A; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--papier); color: var(--encre); font: 400 17px/1.6 var(--texte); padding: 0 20px; }
+  main { max-width: 660px; margin: 0 auto; padding: 72px 0 48px; }
+  .tete-mini { display: flex; align-items: center; gap: 16px; margin-bottom: 56px; }
+  .tete-mini img { width: 52px; height: 52px; border-radius: 10px; flex: none; }
+  .tete-mini b { display: block; font: 600 26px/1.1 var(--mono); letter-spacing: -0.03em; }
+  .code { font: 600 64px/1 var(--mono); letter-spacing: -0.04em; margin-bottom: 14px; }
+  p { color: var(--gris); margin-bottom: 24px; }
+  .bouton { display: inline-block; font: 600 14px/1 var(--mono); background: var(--encre); color: var(--papier); padding: 13px 18px; border-radius: 6px; text-decoration: none; }
+  .bouton:hover { background: var(--rouge); }
+</style>
+</head>
+<body>
+<main>
+  <div class="tete-mini"><img src="/logo-tacitai.png" alt=""><b>TacitAI</b></div>
+  <p class="code">404</p>
+  <p>Cette page n'existe pas.</p>
+  <a class="bouton" href="/">Retour à l'accueil</a>
+</main>
+</body>
+</html>
