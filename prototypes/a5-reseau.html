@@ -96,8 +96,10 @@
   .hero .grille i { border-radius: 4px; }
   .chiffre { font: 400 14px/1.4 var(--mono); color: var(--gris); margin-bottom: 14px; }
   .chiffre b { display: block; font: 600 64px/1 var(--mono); color: var(--encre); letter-spacing: -0.04em; margin-bottom: 6px; }
-  .tete-mini { font: 600 14px var(--mono); margin-bottom: 40px; display: flex; align-items: center; gap: 10px; }
-  .tete-mini img { width: 28px; height: 28px; border-radius: 6px; }
+  .tete-mini { display: flex; align-items: center; gap: 16px; margin: 8px 0 56px; }
+  .tete-mini img { width: 52px; height: 52px; border-radius: 10px; flex: none; }
+  .tete-mini b { display: block; font: 600 26px/1.1 var(--mono); letter-spacing: -0.03em; }
+  .tete-mini span { display: block; font: 400 15px/1.4 var(--texte); color: var(--gris); margin-top: 4px; }
   .averti strong::before { content: "● "; color: var(--r-ok); }
   .offre { margin: 0 0 48px; padding: 20px 22px; border: 1.5px solid var(--encre); border-radius: 8px; max-width: 58ch; }
   .offre p { margin-bottom: 14px; }
@@ -108,7 +110,7 @@
 </head>
 <body>
 <main>
-  <div class="tete-mini"><img src="../logo-tacitai.png" alt="">TacitAI — Justin Lacerte</div>
+  <div class="tete-mini"><img src="../logo-tacitai.png" alt=""><div><b>TacitAI</b><span>Justin Lacerte · Québec, Canada</span></div></div>
   <section class="hero" aria-label="Portrait de novembre 2026">
     <p class="chiffre"><b>34</b> sites vérifiés en novembre 2026</p>
     <div class="grille" role="img" aria-label="34 sites vérifiés : 18 sans problème, 1 critique, 3 élevés, 7 modérés, 3 faibles, 2 impossibles à évaluer de l'extérieur">
