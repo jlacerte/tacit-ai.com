@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TacitAI — Justin Lacerte</title>
+<meta name="description" content="Je vérifie les sites web des PME de l'extérieur, sans rien toucher. Journal de l'enquête.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --papier: #FFFFFF;
+    --encre: #1B2230;
+    --gris: #5B6474;
+    --trait: #E3E6EB;
+    --rouge: #B3261E;
+    --lien: #1F4E8C;
+    /* niveaux de risque */
+    --r-crit: #B3261E;
+    --r-haut: #E0662B;
+    --r-mod: #E9B949;
+    --r-bas: #9FB7D6;
+    --r-inc: #FFFFFF;
+    --r-ok: #2F7D5B;
+    --mono: "Martian Mono", ui-monospace, monospace;
+    --texte: "Instrument Sans", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --papier: #151A22; --encre: #E8EAEE; --gris: #9AA3B2; --trait: #2A313D;
+      --rouge: #E5625A; --lien: #8DB4F0; --r-inc: #151A22;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--papier); color: var(--encre); font: 400 17px/1.6 var(--texte); padding: 0 20px; }
+  main { max-width: 660px; margin: 0 auto; padding: 72px 0 48px; }
+  a { color: var(--lien); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--rouge); outline-offset: 3px; border-radius: 2px; }
+
+  .tete { display: flex; gap: 20px; align-items: center; margin-bottom: 28px; }
+  .tete img { width: 56px; height: 56px; border-radius: 8px; flex: none; }
+  .nom { font: 600 22px/1.2 var(--mono); letter-spacing: -0.02em; }
+  .nom span { display: block; font-weight: 400; font-size: 13px; color: var(--gris); margin-top: 4px; letter-spacing: 0; }
+  .phrase { font-size: 25px; line-height: 1.35; font-weight: 500; max-width: 28ch; margin-bottom: 16px; }
+  .sous { color: var(--gris); max-width: 58ch; }
+  .sous + .sous { margin-top: 12px; }
+
+  h2 { font: 600 14px/1.4 var(--mono); margin: 64px 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--trait); }
+
+  /* Le visuel : une case par site vérifié */
+  .grille { display: grid; grid-template-columns: repeat(17, 1fr); gap: 6px; margin: 8px 0 18px; }
+  .grille i { aspect-ratio: 1; border-radius: 3px; display: block; }
+  .crit { background: var(--r-crit); }
+  .haut { background: var(--r-haut); }
+  .mod  { background: var(--r-mod); }
+  .bas  { background: var(--r-bas); }
+  .inc  { background: var(--r-inc); box-shadow: inset 0 0 0 1.5px var(--gris); }
+  .ok   { background: var(--r-ok); }
+  .grille i { opacity: 0; animation: case .25s ease-out forwards; }
+  @keyframes case { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .grille i { opacity: 1; animation: none; } }
+
+  .legende { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 24px; font-size: 15px; color: var(--gris); }
+  .legende li { display: flex; align-items: center; gap: 10px; }
+  .legende i { width: 12px; height: 12px; border-radius: 2px; flex: none; }
+  .legende b { font: 600 14px var(--mono); color: var(--encre); min-width: 2ch; text-align: right; }
+  .note { font-size: 14px; color: var(--gris); margin-top: 14px; }
+
+  .regarde { list-style: none; display: grid; gap: 14px; }
+  .regarde strong { font-weight: 600; }
+  .regarde p { color: var(--gris); }
+  .limite { margin-top: 20px; padding: 14px 16px; border-left: 3px solid var(--rouge); color: var(--encre); font-size: 16px; }
+
+  .journal { list-style: none; }
+  .journal li { display: grid; grid-template-columns: 112px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--trait); }
+  .journal time { font: 400 13px/1.9 var(--mono); color: var(--rouge); }
+  .journal p { color: var(--gris); font-size: 15px; }
+  .journal strong { color: var(--encre); font-weight: 600; display: block; font-size: 17px; }
+  .etat { font: 400 12px var(--mono); color: var(--rouge); }
+
+  .contact p { margin-bottom: 8px; }
+  .contact a { font: 400 15px var(--mono); }
+  footer { max-width: 660px; margin: 0 auto; padding: 32px 0 48px; color: var(--gris); font: 400 12px var(--mono); }
+
+  @media (max-width: 560px) {
+    main { padding-top: 40px; }
+    .phrase { font-size: 21px; }
+    .grille { grid-template-columns: repeat(10, 1fr); gap: 5px; }
+    .legende { grid-template-columns: 1fr; }
+    .journal li { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="tete">
+      <img src="../logo-tacitai.png" alt="">
+      <div class="nom">TacitAI<span>Justin Lacerte · Québec, Canada</span></div>
+    </div>
+    <p class="phrase">Je vérifie les sites web des PME de mon réseau. De l'extérieur, sans rien toucher.</p>
+    <p class="sous">Un site mal entretenu peut être piraté, puis servir à des escrocs pour paraître crédibles auprès de vos clients et de vos fournisseurs. Une seule PME négligée, et c'est tout le réseau qui devient une cible.</p>
+    <p class="sous">Je fais ce travail avec des outils d'intelligence artificielle. Voici où en est l'enquête.</p>
+  </header>
+
+  <section aria-labelledby="t-portrait">
+    <h2 id="t-portrait">Portrait — novembre 2026</h2>
+    <div class="grille" role="img" aria-label="34 sites vérifiés : 18 sans problème, 1 critique, 3 élevés, 7 modérés, 3 faibles, 2 à préciser">
+      <i class="crit"></i>
+      <i class="haut"></i><i class="haut"></i><i class="haut"></i>
+      <i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i><i class="mod"></i>
+      <i class="bas"></i><i class="bas"></i><i class="bas"></i>
+      <i class="inc"></i><i class="inc"></i>
+      <i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
+      <i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
+      <i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
+    </div>
+    <ul class="legende" aria-hidden="true">
+      <li><i class="ok"></i><b>18</b>rien à signaler</li>
+      <li><i class="crit"></i><b>1</b>risque critique</li>
+      <li><i class="haut"></i><b>3</b>risque élevé</li>
+      <li><i class="mod"></i><b>7</b>risque modéré</li>
+      <li><i class="bas"></i><b>3</b>risque faible</li>
+      <li><i class="inc"></i><b>2</b>à préciser</li>
+    </ul>
+    <p class="note">Une case par site : clients, fournisseurs et partenaires. Aucun site n'est nommé ici.</p>
+  </section>
+
+  <section aria-labelledby="t-regarde">
+    <h2 id="t-regarde">Ce que je regarde</h2>
+    <ul class="regarde">
+      <li><strong>Le logiciel du site</strong><p>Quelle version tourne, et si elle a des failles connues.</p></li>
+      <li><strong>Le certificat et le domaine</strong><p>S'ils sont valides, et quand ils expirent.</p></li>
+      <li><strong>Qui entretient le site</strong><p>Une plateforme qui fait les mises à jour, un hébergeur, ou personne.</p></li>
+    </ul>
+    <p class="limite">Je constate seulement ce que les sites montrent publiquement. Aucun test plus poussé sans l'accord écrit du propriétaire.</p>
+  </section>
+
+  <section aria-labelledby="t-journal">
+    <h2 id="t-journal">Journal de l'enquête</h2>
+    <ol class="journal" reversed>
+      <li><time datetime="2026-11-22">2026-11-22</time><p><strong>Mon propre site passe en premier</strong>Vérification de tacit-ai.com, comme pour un client. <span class="etat">en cours</span></p></li>
+      <li><time datetime="2026-11-21">2026-11-21</time><p><strong>34 sites vérifiés</strong>Chacun a sa fiche et son niveau de risque. 16 restent sous surveillance.</p></li>
+      <li><time datetime="2026-10-27">2026-10-27</time><p><strong>Qui est responsable de quoi</strong>Hébergeur, registraire et responsable de l'entretien, pour chaque site.</p></li>
+      <li><time datetime="2026-10-25">2026-10-25</time><p><strong>Cardea Sentinelle</strong>Prototype ouvert d'une protection anti-rançongiciel pour Nextcloud. <a href="https://github.com/jlacerte/cardea-sentinelle">Voir le code</a> <span class="etat">prototype</span></p></li>
+      <li><time datetime="2026-10-24">2026-10-24</time><p><strong>Un outil maison</strong>Il reconnaît 7 647 technologies web et repère les sites touchés par la faille PHP2Shell.</p></li>
+      <li><time datetime="2026-10-22">2026-10-22</time><p><strong>Début de l'enquête</strong></p></li>
+    </ol>
+  </section>
+
+  <section class="contact" aria-labelledby="t-contact">
+    <h2 id="t-contact">Votre site est-il dans le lot ?</h2>
+    <p>Écrivez-moi, je vous dis ce que j'ai vu.</p>
+    <a href="mailto:justin@tacit-ai.com">justin@tacit-ai.com</a>
+  </section>
+</main>
+<footer>TacitAI · 2026 · <a href="https://github.com/jlacerte">GitHub</a></footer>
+<script>
+  // Décale l'apparition des cases, une après l'autre (un seul moment animé).
+  document.querySelectorAll('.grille i').forEach((c, n) => c.style.animationDelay = (n * 25) + 'ms');
+</script>
+</body>
+</html>
